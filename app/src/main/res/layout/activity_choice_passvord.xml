@@ -155,7 +155,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="onClickAgain"
-        android:text="Again"
+        android:text="снова"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -165,11 +165,11 @@
         app:layout_constraintVertical_bias="0.899" />
 
     <Button
-        android:id="@+id/okButton"
+        android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickOK"
-        android:text="OK"
+        android:onClick="onClickNext"
+        android:text="Далее"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

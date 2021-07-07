@@ -2,6 +2,7 @@ package com.example.lockscreen
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -13,7 +14,11 @@ class ChoicePassvord: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindingClass = ActivityChoicePassvordBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
-        pref = getSharedPreferences(CONST_SIMPLE_PASS.TABLE_SIMPLE_PASS, Context.MODE_PRIVATE)
+
+        // запрет на поворот экрана
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        pref = getSharedPreferences(CONST_PASS.TABLE_PASS, Context.MODE_PRIVATE)
         enBut_Again_Ok_FALSE()
         arrSimplePass.clear()
     }
@@ -47,11 +52,11 @@ class ChoicePassvord: AppCompatActivity() {
 
     private fun enBut_Again_Ok_TRUE(){
         bindingClass.againButton.isEnabled = true
-        bindingClass.okButton.isEnabled = true
+        bindingClass.nextButton.isEnabled = true
     }
     private fun enBut_Again_Ok_FALSE(){
         bindingClass.againButton.isEnabled = false
-        bindingClass.okButton.isEnabled = false
+        bindingClass.nextButton.isEnabled = false
     }
 
 
@@ -177,15 +182,15 @@ class ChoicePassvord: AppCompatActivity() {
 
     fun onClickAgain(view: View) {
         arrSimplePass.clear()
-        deleteAllSimplePass()
+        deleteAllPass()
         enBut_Again_Ok_FALSE()
         arrSimplePass.clear()
         enableNubres_TRUE()
     }
 
-    fun onClickOK(view: View) {
-        saveDataSimplePass()
-        val intent = Intent(this, MainActivity::class.java)
+    fun onClickNext(view: View) {
+        saveDataPass()
+        val intent = Intent(this, ChoiceAlgorithm::class.java)
         arrSimplePass.clear()
         startActivity(intent)
         finish()

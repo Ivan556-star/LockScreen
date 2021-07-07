@@ -3,18 +3,20 @@ package com.example.lockscreen
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lockscreen.databinding.ActivityMainBinding
 import java.util.*
 
 
-class MainActivity: AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
     private lateinit var bindingClass: ActivityMainBinding
-    var tmpArr = Stack<Int>()
+    private var tmpArr = Stack<Int>()
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -22,16 +24,21 @@ class MainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bindingClass = ActivityMainBinding.inflate(layoutInflater)
         setContentView(bindingClass.root)
-        pref = getSharedPreferences(CONST_SIMPLE_PASS.TABLE_SIMPLE_PASS, Context.MODE_PRIVATE)
 
-        if (pref.getInt(CONST_SIMPLE_PASS.FIRST_BUTTON, -1) == -1){
+        // запрет на поворот экрана
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+        pref = getSharedPreferences(CONST_PASS.TABLE_PASS, Context.MODE_PRIVATE)
+
+        if (pref.getInt(CONST_PASS.FIRST_BUTTON, -1) == -1) {
             val intent = Intent(this@MainActivity, ChoicePassvord::class.java)
             startActivity(intent)
             finish()
         }
 
         fillButtons()
-        fillArrSimplePass()
+        fillArrPass()
+        numbersButtons()
 
 
         // обработка удерживания кнопки DELETE
@@ -65,8 +72,6 @@ class MainActivity: AppCompatActivity() {
                 }
             }
         })
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -76,7 +81,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId){
+        return when (item.itemId) {
             R.id.changePassword -> {
                 val intent = Intent(this@MainActivity, ChoicePassvord::class.java)
                 startActivity(intent)
@@ -88,7 +93,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickOne(view: View) {
-        tmpArr.add(1)
+        tmpArr.add(bindingClass.one.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
 
@@ -99,7 +104,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickTwo(view: View) {
-        tmpArr.add(2)
+        tmpArr.add(bindingClass.two.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -108,7 +113,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickThree(view: View) {
-        tmpArr.add(3)
+        tmpArr.add(bindingClass.three.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -117,7 +122,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickFour(view: View) {
-        tmpArr.add(4)
+        tmpArr.add(bindingClass.four.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -126,7 +131,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickFive(view: View) {
-        tmpArr.add(5)
+        tmpArr.add(bindingClass.five.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -135,7 +140,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickSix(view: View) {
-        tmpArr.add(6)
+        tmpArr.add(bindingClass.six.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -144,7 +149,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickSeven(view: View) {
-        tmpArr.add(7)
+        tmpArr.add(bindingClass.seven.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -153,7 +158,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickIeght(view: View) {
-        tmpArr.add(8)
+        tmpArr.add(bindingClass.eight.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -162,7 +167,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickNine(view: View) {
-        tmpArr.add(9)
+        tmpArr.add(bindingClass.nine.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -171,7 +176,7 @@ class MainActivity: AppCompatActivity() {
     }
 
     fun onClickZero(view: View) {
-        tmpArr.add(0)
+        tmpArr.add(bindingClass.zero.text.toString().toInt())
         if (tmpArr.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
@@ -190,14 +195,13 @@ class MainActivity: AppCompatActivity() {
 
     fun onClickEnter(view: View) {
         bindingClass.textView.text = ""
-        if (tmpArr == arrSimplePass){
+        if (tmpArr == arrSimplePass) {
             bindingClass.tvCorrect.visibility = View.VISIBLE
             finish()
-        }
-        else{
+        } else {
             bindingClass.tvIncorrect.visibility = View.VISIBLE
             enableNumbers_FALSE()
-            val timer = object: CountDownTimer(TIME, INTERVAL) {
+            val timer = object : CountDownTimer(TIME, INTERVAL) {
                 override fun onTick(millisUntilFinished: Long) {}
 
                 override fun onFinish() {
@@ -212,7 +216,7 @@ class MainActivity: AppCompatActivity() {
         }
     }
 
-    private fun fillButtons(){
+    private fun fillButtons() {
         val numbers = arrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
         numbers.shuffle()
         bindingClass.one.text = numbers[0].toString()
@@ -228,7 +232,7 @@ class MainActivity: AppCompatActivity() {
     }
 
 
-    private fun enableNumbers_TRUE(){
+    private fun enableNumbers_TRUE() {
         bindingClass.one.isEnabled = true
         bindingClass.two.isEnabled = true
         bindingClass.three.isEnabled = true
@@ -242,7 +246,7 @@ class MainActivity: AppCompatActivity() {
         bindingClass.delete.isEnabled = true
     }
 
-    private fun enableNumbers_FALSE(){
+    private fun enableNumbers_FALSE() {
         bindingClass.one.isEnabled = false
         bindingClass.two.isEnabled = false
         bindingClass.three.isEnabled = false
@@ -259,6 +263,75 @@ class MainActivity: AppCompatActivity() {
     companion object {
         const val TIME = 2000L
         const val INTERVAL = 100L
+    }
+
+
+    fun numbersButtons() {
+        val map = mapOf(
+            bindingClass.one.text.toString().toInt() to 1,
+            bindingClass.two.text.toString().toInt() to 2,
+            bindingClass.three.text.toString().toInt() to 3,
+            bindingClass.four.text.toString().toInt() to 4,
+            bindingClass.five.text.toString().toInt() to 5,
+            bindingClass.six.text.toString().toInt() to 6,
+            bindingClass.seven.text.toString().toInt() to 7,
+            bindingClass.eight.text.toString().toInt() to 8,
+            bindingClass.nine.text.toString().toInt() to 9,
+            bindingClass.zero.text.toString().toInt() to 0,
+        )
+        var q = 0
+        val n = pref.getInt(CONST_PASS.USER_NUMBER, -1)
+        for ((key, value) in map) {
+            for (i in q until arrSimplePass.size) {
+                if (arrSimplePass[i] == value) {
+                    when {
+                        pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.MULTIPLY -> {
+                            arrSimplePass[i] = key * n
+                            var num = arrSimplePass[i]
+                            if (num < 0) {
+                                num *= -1
+                                arrSimplePass[i] = num
+                            }
+                            if (num > 9) {
+                                val s = num.toString()
+                                num = s[s.length - 1].digitToInt()
+                                arrSimplePass[i] = num
+                            }
+                            q++
+                        }
+                        pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.ADDITION -> {
+                            arrSimplePass[i] = key + n
+                            var num = arrSimplePass[i]
+                            if (num < 0) {
+                                num *= -1
+                                arrSimplePass[i] = num
+                            }
+                            if (num > 9) {
+                                val s = num.toString()
+                                num = s[s.length - 1].digitToInt()
+                                arrSimplePass[i] = num
+                            }
+                            q++
+                        }
+                        pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.SUBTRACTION -> {
+                            arrSimplePass[i] = key - n
+                            var num = arrSimplePass[i]
+                            if (num < 0) {
+                                num *= -1
+                                arrSimplePass[i] = num
+                            }
+                            if (num > 9) {
+                                val s = num.toString()
+                                num = s[s.length - 1].digitToInt()
+                                arrSimplePass[i] = num
+                            }
+                            q++
+                        }
+                    }
+                }
+            }
+
+        }
     }
 
 }

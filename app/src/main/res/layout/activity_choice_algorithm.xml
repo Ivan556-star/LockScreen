@@ -6,4 +6,88 @@
     android:layout_height="match_parent"
     tools:context=".ChoiceAlgorithm">
 
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RadioButton
+            android:id="@+id/multiply"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClickMULTIPLY"
+            android:text="Умножить" />
+
+        <RadioButton
+            android:id="@+id/add"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:onClick="onClickADDITION"
+            android:text="Прибавить" />
+
+        <RadioButton
+            android:id="@+id/deduct"
+            android:layout_width="120dp"
+            android:onClick="onClickSUBTRACTION"
+            android:layout_height="wrap_content"
+            android:text="Отнять" />
+    </RadioGroup>
+
+    <EditText
+        android:id="@+id/inputNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Введите число"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.662" />
+
+    <TextView
+        android:id="@+id/tvChoiceAlg"
+        android:layout_width="249dp"
+        android:layout_height="108dp"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:text="Выберите какие арефметические действия выполнять с цифрами вашего пинкода и введите число с которым это действие будет выполняться"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.173" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="284dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="Если число после арефметических операций получится двухзначным или более, то необходима только последняя цифра числа"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNumber"
+        app:layout_constraintVertical_bias="0.116" />
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Завершить настройку"
+        android:textColor="@color/black"
+        android:onClick="onClickFinish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
