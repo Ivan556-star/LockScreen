@@ -4,11 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
-import android.util.Log
 import android.view.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lockscreen.databinding.ActivityMainBinding
 import java.util.*
@@ -16,7 +17,7 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var bindingClass: ActivityMainBinding
-    private var tmpArr = Stack<Int>()
+    private var arrUserTmpNums = Stack<Int>()
 
 
     @SuppressLint("ClickableViewAccessibility")
@@ -38,7 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         fillButtons()
         fillArrPass()
-        numbersButtons()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+            numbersButtons()
 
 
         // обработка удерживания кнопки DELETE
@@ -66,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                         var s: String = bindingClass.textView.text.toString()
                         s = s.substring(0, s.length - 1)
                         bindingClass.textView.text = s
-                        tmpArr.pop()
+                        arrUserTmpNums.pop()
                     }
                     mHandler!!.postDelayed(this, 100)
                 }
@@ -93,8 +95,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickOne(view: View) {
-        tmpArr.add(bindingClass.one.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.one.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
 
         var s: String = bindingClass.textView.text.toString()
@@ -104,8 +106,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickTwo(view: View) {
-        tmpArr.add(bindingClass.two.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.two.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.two.text
@@ -113,8 +115,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickThree(view: View) {
-        tmpArr.add(bindingClass.three.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.three.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.three.text
@@ -122,8 +124,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickFour(view: View) {
-        tmpArr.add(bindingClass.four.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.four.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.four.text
@@ -131,8 +133,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickFive(view: View) {
-        tmpArr.add(bindingClass.five.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.five.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.five.text
@@ -140,8 +142,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickSix(view: View) {
-        tmpArr.add(bindingClass.six.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.six.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.six.text
@@ -149,8 +151,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickSeven(view: View) {
-        tmpArr.add(bindingClass.seven.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.seven.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.seven.text
@@ -158,8 +160,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickIeght(view: View) {
-        tmpArr.add(bindingClass.eight.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.eight.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.eight.text
@@ -167,8 +169,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickNine(view: View) {
-        tmpArr.add(bindingClass.nine.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.nine.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.nine.text
@@ -176,8 +178,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClickZero(view: View) {
-        tmpArr.add(bindingClass.zero.text.toString().toInt())
-        if (tmpArr.size >= arrSimplePass.size)
+        arrUserTmpNums.add(bindingClass.zero.text.toString().toInt())
+        if (arrUserTmpNums.size >= arrSimplePass.size)
             enableNumbers_FALSE()
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.zero.text
@@ -189,13 +191,13 @@ class MainActivity : AppCompatActivity() {
             var s: String = bindingClass.textView.text.toString()
             s = s.substring(0, s.length - 1)
             bindingClass.textView.text = s
-            tmpArr.pop()
+            arrUserTmpNums.pop()
         }
     }
 
     fun onClickEnter(view: View) {
         bindingClass.textView.text = ""
-        if (tmpArr == arrSimplePass) {
+        if (arrUserTmpNums == arrSimplePass) {
             bindingClass.tvCorrect.visibility = View.VISIBLE
             finish()
         } else {
@@ -207,8 +209,10 @@ class MainActivity : AppCompatActivity() {
                 override fun onFinish() {
                     bindingClass.tvIncorrect.visibility = View.VISIBLE
                     enableNumbers_TRUE()
-                    tmpArr.clear()
+                    arrUserTmpNums.clear()
                     fillButtons()
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                        numbersButtons()
                     bindingClass.tvIncorrect.visibility = View.GONE
                 }
             }
@@ -268,69 +272,67 @@ class MainActivity : AppCompatActivity() {
 
     fun numbersButtons() {
         val map = mapOf(
-            bindingClass.one.text.toString().toInt() to 1,
-            bindingClass.two.text.toString().toInt() to 2,
-            bindingClass.three.text.toString().toInt() to 3,
-            bindingClass.four.text.toString().toInt() to 4,
-            bindingClass.five.text.toString().toInt() to 5,
-            bindingClass.six.text.toString().toInt() to 6,
-            bindingClass.seven.text.toString().toInt() to 7,
-            bindingClass.eight.text.toString().toInt() to 8,
-            bindingClass.nine.text.toString().toInt() to 9,
-            bindingClass.zero.text.toString().toInt() to 0,
+            1 to bindingClass.one.text.toString().toInt(),
+            2 to bindingClass.two.text.toString().toInt(),
+            3 to bindingClass.three.text.toString().toInt(),
+            4 to bindingClass.four.text.toString().toInt(),
+            5 to bindingClass.five.text.toString().toInt(),
+            6 to bindingClass.six.text.toString().toInt(),
+            7 to bindingClass.seven.text.toString().toInt(),
+            8 to bindingClass.eight.text.toString().toInt(),
+            9 to bindingClass.nine.text.toString().toInt(),
+            0 to bindingClass.zero.text.toString().toInt(),
         )
         var q = 0
         val n = pref.getInt(CONST_PASS.USER_NUMBER, -1)
-        for ((key, value) in map) {
-            for (i in q until arrSimplePass.size) {
-                if (arrSimplePass[i] == value) {
-                    when {
-                        pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.MULTIPLY -> {
-                            arrSimplePass[i] = key * n
-                            var num = arrSimplePass[i]
-                            if (num < 0) {
-                                num *= -1
-                                arrSimplePass[i] = num
-                            }
-                            if (num > 9) {
-                                val s = num.toString()
-                                num = s[s.length - 1].digitToInt()
-                                arrSimplePass[i] = num
-                            }
-                            q++
-                        }
-                        pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.ADDITION -> {
-                            arrSimplePass[i] = key + n
-                            var num = arrSimplePass[i]
-                            if (num < 0) {
-                                num *= -1
-                                arrSimplePass[i] = num
-                            }
-                            if (num > 9) {
-                                val s = num.toString()
-                                num = s[s.length - 1].digitToInt()
-                                arrSimplePass[i] = num
-                            }
-                            q++
-                        }
-                        pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.SUBTRACTION -> {
-                            arrSimplePass[i] = key - n
-                            var num = arrSimplePass[i]
-                            if (num < 0) {
-                                num *= -1
-                                arrSimplePass[i] = num
-                            }
-                            if (num > 9) {
-                                val s = num.toString()
-                                num = s[s.length - 1].digitToInt()
-                                arrSimplePass[i] = num
-                            }
-                            q++
-                        }
+
+        for (i in arrSimplePass){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)
+                arrSimplePass[q] = map.getOrDefault(i, -1)
+            when {
+                pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.MULTIPLY -> {
+                    arrSimplePass[q] = arrSimplePass[q] * n
+                    var num = arrSimplePass[q]
+                    if (num < 0) {
+                        num *= -1
+                        arrSimplePass[q] = num
                     }
+                    if (num > 9) {
+                        val s = num.toString()
+                        num = s[s.length - 1].digitToInt()
+                        arrSimplePass[q] = num
+                    }
+                    q++
+                }
+                pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.ADDITION -> {
+                    arrSimplePass[q] = arrSimplePass[q] + n
+                    var num = arrSimplePass[q]
+                    if (num < 0) {
+                        num *= -1
+                        arrSimplePass[q] = num
+                    }
+                    if (num > 9) {
+                        val s = num.toString()
+                        num = s[s.length - 1].digitToInt()
+                        arrSimplePass[q] = num
+                    }
+                    q++
+                }
+                pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.SUBTRACTION -> {
+                    arrSimplePass[q] = arrSimplePass[q] - n
+                    var num = arrSimplePass[q]
+                    if (num < 0) {
+                        num *= -1
+                        arrSimplePass[q] = num
+                    }
+                    if (num > 9) {
+                        val s = num.toString()
+                        num = s[s.length - 1].digitToInt()
+                        arrSimplePass[q] = num
+                    }
+                    q++
                 }
             }
-
         }
     }
 
