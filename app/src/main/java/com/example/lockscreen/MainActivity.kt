@@ -13,6 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lockscreen.databinding.ActivityMainBinding
 import java.util.*
+import kotlin.math.round
+import kotlin.math.roundToInt
 
 
 class MainActivity : AppCompatActivity() {
@@ -320,6 +322,20 @@ class MainActivity : AppCompatActivity() {
                 }
                 pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.SUBTRACTION -> {
                     arrSimplePass[q] = arrSimplePass[q] - n
+                    var num = arrSimplePass[q]
+                    if (num < 0) {
+                        num *= -1
+                        arrSimplePass[q] = num
+                    }
+                    if (num > 9) {
+                        val s = num.toString()
+                        num = s[s.length - 1].digitToInt()
+                        arrSimplePass[q] = num
+                    }
+                    q++
+                }
+                pref.getString(CONST_PASS.OPERATION, "") == CONST_PASS.DIVISION -> {
+                    arrSimplePass[q] = round(arrSimplePass[q].toDouble() / n.toDouble()).toInt()
                     var num = arrSimplePass[q]
                     if (num < 0) {
                         num *= -1

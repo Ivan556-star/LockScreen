@@ -16,6 +16,7 @@ object CONST_PASS{
     val OPERATION = "OPERATION" // для сохранения выбранной арефметической операции
     val MULTIPLY = "MULTIPLY"
     val ADDITION = "ADDITION"
+    val DIVISION = "DIVISION"
     val SUBTRACTION = "SUBTRACTION"
     val USER_NUMBER = "USER_NUMBER" // для сохранения введённого числа пользователя
 }

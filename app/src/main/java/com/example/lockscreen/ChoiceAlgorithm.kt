@@ -47,7 +47,10 @@ class ChoiceAlgorithm : AppCompatActivity() {
         tmpS = CONST_PASS.SUBTRACTION
     }
 
-
+    fun onClickDIVISION(view: View){
+        choiceDone = true
+        tmpS = CONST_PASS.DIVISION
+    }
 
     fun onClickFinish(view: View){
         if (!choiceDone){
@@ -56,16 +59,24 @@ class ChoiceAlgorithm : AppCompatActivity() {
                 Toast.LENGTH_SHORT).show()
             return
         }
-        if (TextUtils.isEmpty(bindingClass.inputNumber.text.toString()) && TextUtils.isDigitsOnly(bindingClass.inputNumber.text.toString()))
-            bindingClass.inputNumber.error = "Введите число от 0 до 9"
-        else {
-            val editor = pref.edit()
-            editor?.putString(CONST_PASS.OPERATION, tmpS)
-            editor?.putInt(CONST_PASS.USER_NUMBER, bindingClass.inputNumber.text.toString().toInt())
-            editor?.apply()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+        if (TextUtils.isEmpty(bindingClass.inputNumber.text.toString()) &&
+            TextUtils.isDigitsOnly(bindingClass.inputNumber.text.toString()))
+            bindingClass.inputNumber.error = "Введите число 1 до 300 (включительно)"
+        else{
+            if(bindingClass.inputNumber.text.toString().toInt() in 2..300) {
+                val editor = pref.edit()
+                editor?.putString(CONST_PASS.OPERATION, tmpS)
+                editor?.putInt(
+                    CONST_PASS.USER_NUMBER,
+                    bindingClass.inputNumber.text.toString().toInt()
+                )
+                editor?.apply()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+            else
+                bindingClass.inputNumber.error = "Введите число 1 до 300 (включительно)"
         }
     }
 
