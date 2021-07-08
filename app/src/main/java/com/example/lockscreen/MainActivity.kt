@@ -101,6 +101,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
 
         var s: String = bindingClass.textView.text.toString()
@@ -114,6 +115,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.two.text
@@ -125,6 +127,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.three.text
@@ -136,6 +139,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.four.text
@@ -147,6 +151,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.five.text
@@ -158,6 +163,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.six.text
@@ -169,6 +175,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.seven.text
@@ -180,6 +187,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.eight.text
@@ -191,6 +199,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.nine.text
@@ -202,6 +211,7 @@ class MainActivity : AppCompatActivity() {
         if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
             checkPassword()
+            return
         }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.zero.text
