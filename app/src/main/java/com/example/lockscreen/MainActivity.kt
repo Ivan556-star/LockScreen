@@ -98,8 +98,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickOne(view: View) {
         arrUserTmpNums.add(bindingClass.one.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
 
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.one.text
@@ -109,8 +111,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickTwo(view: View) {
         arrUserTmpNums.add(bindingClass.two.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.two.text
         bindingClass.textView.text = s
@@ -118,8 +122,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickThree(view: View) {
         arrUserTmpNums.add(bindingClass.three.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.three.text
         bindingClass.textView.text = s
@@ -127,8 +133,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickFour(view: View) {
         arrUserTmpNums.add(bindingClass.four.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.four.text
         bindingClass.textView.text = s
@@ -136,8 +144,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickFive(view: View) {
         arrUserTmpNums.add(bindingClass.five.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.five.text
         bindingClass.textView.text = s
@@ -145,8 +155,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickSix(view: View) {
         arrUserTmpNums.add(bindingClass.six.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.six.text
         bindingClass.textView.text = s
@@ -154,8 +166,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickSeven(view: View) {
         arrUserTmpNums.add(bindingClass.seven.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.seven.text
         bindingClass.textView.text = s
@@ -163,8 +177,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickIeght(view: View) {
         arrUserTmpNums.add(bindingClass.eight.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.eight.text
         bindingClass.textView.text = s
@@ -172,8 +188,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickNine(view: View) {
         arrUserTmpNums.add(bindingClass.nine.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.nine.text
         bindingClass.textView.text = s
@@ -181,8 +199,10 @@ class MainActivity : AppCompatActivity() {
 
     fun onClickZero(view: View) {
         arrUserTmpNums.add(bindingClass.zero.text.toString().toInt())
-        if (arrUserTmpNums.size >= arrSimplePass.size)
+        if (arrUserTmpNums.size >= arrSimplePass.size) {
             enableNumbers_FALSE()
+            checkPassword()
+        }
         var s: String = bindingClass.textView.text.toString()
         s += bindingClass.zero.text
         bindingClass.textView.text = s
@@ -197,11 +217,17 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onClickEnter(view: View) {
+    fun checkPassword() {
         bindingClass.textView.text = ""
         if (arrUserTmpNums == arrSimplePass) {
             bindingClass.tvCorrect.visibility = View.VISIBLE
-            finish()
+            val timer = object : CountDownTimer(1000, INTERVAL) {
+                override fun onTick(millisUntilFinished: Long) {}
+                override fun onFinish() {
+                    finish()
+                }
+            }
+            timer.start()
         } else {
             bindingClass.tvIncorrect.visibility = View.VISIBLE
             enableNumbers_FALSE()
