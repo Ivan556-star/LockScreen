@@ -63,7 +63,7 @@ class ChoiceAlgorithm : AppCompatActivity() {
             TextUtils.isDigitsOnly(bindingClass.inputNumber.text.toString()))
             bindingClass.inputNumber.error = "Введите число 1 до 300 (включительно)"
         else{
-            if(bindingClass.inputNumber.text.toString().toInt() in 2..300) {
+            if(bindingClass.inputNumber.text.toString().toInt() in 1..300) {
                 val editor = pref.edit()
                 editor?.putString(CONST_PASS.OPERATION, tmpS)
                 editor?.putInt(
